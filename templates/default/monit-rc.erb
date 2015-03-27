@@ -1,6 +1,12 @@
 set daemon <%= node[:monit][:poll_period] || 30 %>
 
-set logfile syslog facility log_daemon
+set logfile /var/log/monit.log
+set idfile /var/lib/monit/id
+set statefile /var/lib/monit/state
+
+set eventqueue
+  basedir /var/lib/monit/events
+  slots 100
 
 
 <% if node[:monit][:enable_emails] %>
